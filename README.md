@@ -1,7 +1,7 @@
-#Оглавление
+# Оглавление
 1. [Arrow Functions](#arrow-functions)
 1. [Some Header](#some-header)
-#Arrow Functions
+# Arrow Functions
 
 Варианты использования:
 

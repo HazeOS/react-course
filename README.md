@@ -46,7 +46,7 @@ export default person
 
 utility.js
 ```javascript
-export const clean = () = {...};
+export const clean = (smth) = {...};
 export const baseData = 10;
 ```
 
@@ -74,7 +74,7 @@ import * as bundle from './utility.js'
 ```javascript
 class Person {
     name = 'Max' //свойство
-    call = () => {...} //метод
+    call = () => {/*some actions*/} //метод
 }
 ```
 
@@ -87,7 +87,9 @@ console.log(myPerson.name);
 
 Наследование
 ```javascript
-class Person extends Master
+class Person extends Master {
+    
+}
 ```
 
 Пример класса и его использования
@@ -149,17 +151,44 @@ person.printGender();
 # Spread & Rest Operators
 
 ## Spread
-`...` - берет все элменты старого массива и пишет в новый
+`...` - берет **все** элменты старого массива и пишет в новый
 ```javascript
 const newArray = [...oldArray, 1, 2];
 const newObject = {...oldArray, newProp: 5};
 ```
 
 ## Rest
-`...` - пишут все аргументы функции в массив, в последствии на массив можно
+`...` - пишет **все** аргументы функции в массив, в последствии на массив можно
 применять функции для работы с массивами
 ```javascript
 sortArgs = (...args) => {
-    return args.sort();
+    return args.filter(el => el === 1);
 }
+
+console.log(sortArgs(1,2,3));
 ```
+
+## Destructing
+Позволяет извлекать **определенные (одиночные)** элементы массивов или свойства объектов для хранения в переменных.
+
+### Array Destructing
+
+```javascript
+[a, b] = ['Hello', 'World'];
+console.log(a);// Hello
+console.log(b);// World
+
+const number = [1, 2, 3];
+[num1, ,num3] = numbers;
+console.log(num1, num3); // 1 3
+```
+
+### Object Destructing
+
+```javascript
+{name} = {name: 'Max', age: 28};
+console.log(name);// Max
+console.log(age);// Undefined
+```
+
+# Reference and Primitive Types Refresher

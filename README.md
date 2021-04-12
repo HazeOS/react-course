@@ -186,7 +186,7 @@ console.log(num1, num3); // 1 3
 ### Object Destructing
 
 ```javascript
-{name} = {name: 'Max', age: 28};
+({name} = {name: 'Max', age: 28});
 console.log(name);// Max
 console.log(age);// Undefined
 ```

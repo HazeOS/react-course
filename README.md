@@ -151,7 +151,7 @@ person.printGender();
 # Spread & Rest Operators
 
 ## Spread
-`...` - берет **все** элменты старого массива и пишет в новый
+`...` - берет **все** элементы старого массива и пишет в новый
 ```javascript
 const newArray = [...oldArray, 1, 2];
 const newObject = {...oldArray, newProp: 5};
@@ -192,3 +192,80 @@ console.log(age);// Undefined
 ```
 
 # Reference and Primitive Types Refresher
+Примитивные типы данных:
+- `string` Строки
+- `number` Числа
+- `boolean` Булево
+
+При переназначении переменных, значение копируется.
+```javascript
+const number = 1;
+const secondNumber = number;
+
+console.log(secondNumber); // Prints 1
+```
+
+Ссылочные типы данных:
+ - `object` объекты
+ - `array` массивы
+
+Объект хранится в памяти, но переменная `person` хранит в себе только указатель (ссылку) 
+на это место в памяти.
+```javascript
+const person = {
+    name: 'Max'
+}
+const secondPerson = person;
+
+console.log(secondPerson.name); // prints 'Max' 
+```
+По умолчанию, при переназначении переменной копируется указатель, а не значение.
+```javascript
+const person = {
+    name: 'Max'
+}
+const secondPerson = person;
+
+person.name = 'Manu'
+
+console.log(secondPerson.name); // prints 'Manu' 
+```
+Выводит имя 'Manu', потому что переменная указывает 
+на то же место в памяти, так как объект один.
+
+Такая же история по умолчанию с массивами.
+
+Для копирования объекта (создания нового) нужно использовать следующий синтаксис:
+```javascript
+const person = {
+    name: 'Max'
+}
+const secondPerson = {
+    ...person
+};
+
+person.name = 'Manu'
+
+console.log(secondPerson.name); // prints 'Max' 
+```
+# Refreshing Array Functions
+`.map()` - принимает на вход функцию и применяет ее к каждому элементу массива.
+Возвращает **новый** массив.
+```javascript
+const numbers = [1, 2, 3];
+const doubleNumArray = numbers.map((num) => {
+    return num * 2;
+});
+
+console.log(numbers); // [1, 2, 3];
+console.log(doubleNumArray); // [2, 4, 6];
+```
+Другие полезные функции применимые к массивам:
+
+1. [`.find()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+1. [`.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
+1. [`.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+1. [`.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+1. [`.concat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+1. [`.slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+1. [`.splice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)

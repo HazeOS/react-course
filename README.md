@@ -269,3 +269,67 @@ console.log(doubleNumArray); // [2, 4, 6];
 1. [`.concat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
 1. [`.slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
 1. [`.splice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+
+# Build Workflow
+Лучшие практики для одно страничных и многостраничных веб приложений: 
+- Оптимизированный код
+- Использование последних возможностей JS
+- Использование пакетных менеджеров (менеджеров зависимостей) npm или yarn
+- Использовать сборщик Webpack
+- Использовать компилятор (Next Gen JS в обычный JS) Babel + Presets
+
+# React Commands
+`npm create-react-app <NAME> --scripts-version <VERSION>` - создает проект (папку) 
+с именем указанным в команде. `--scripts-version <VERSION>` - опционально,
+чем больше версия, тем больше новых возможностей есть в React. Если не указывать,
+то будет задействована последняя версия скриптов.
+
+`npm start` - запускает локальный сервер на localhost:3000
+
+# React Common Features
+
+## JSX
+```javascript
+    return (
+      <div className="App">
+          <h1>This is React Application.</h1>
+      </div>
+    );
+```
+Пример указанный выше — то же самое что и пример указанный ниже.
+Так работает `jsx`.
+```javascript
+    return React.createElement('div', {className: 'App'}, 
+    React.createElement('h1', null, 'This is React Application.'
+    ));
+```
+
+## Props (properties)
+Для использования свойств необходимо указать их в атрибутах компонента.
+
+App.js
+```javascript
+<Person name="Ilya" age="23">My hobby: Nothing</Person>
+```
+
+Person.js
+```javascript
+const person = (props) => {
+    return (
+        <div>
+            <p>I'm a {props.name} and I am {props.age} years old.</p>
+            <p>{props.children}</p>
+        </div>
+    );
+}
+/**
+ * Выведет:
+ * I'm a Ilya and I am 23 years old.
+ * My hobby: Nothing
+ */
+```
+Свойства указанные в атрибутах, доступны через параметр `props.*`.
+Также есть свойства по умолчанию, например `props.children`, в котором будет
+содержимое компонента переданное между `<Person>` и `</Person>`
+
+## TODO Описать State по лекции 395-396. Props & State

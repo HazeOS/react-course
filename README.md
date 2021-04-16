@@ -332,4 +332,231 @@ const person = (props) => {
 Также есть свойства по умолчанию, например `props.children`, в котором будет
 содержимое компонента переданное между `<Person>` и `</Person>`
 
-## TODO Описать State по лекции 395-396. Props & State
+## State
+`state` - используется для изменения компонента внутри себя.
+Доступен только в компонентах основанных на классах (class-based components).
+
+```javascript
+class NewPost extends Component { // state can only be accessed in class-based components!
+    state = {
+        counter: 1
+    };  
+ 
+    render () { // Needs to be implemented in class-based components! Needs to return some JSX!
+        return (
+            <div>{this.state.counter}</div>
+        );
+    }
+}
+```
+
+При изменении `state` компонент отобразит новые данные.
+Отличием `state` от `props` является то, что все происходит в рамках одного компонента.
+`state` не получает данные из вне (от родительских компонентов).
+> `this.setState` в компонентах основанных на классах, при изменении
+> совмещает данные старого объекта и нового
+```javascript
+state = {
+    persons: [
+        {name: 'Ilya', age: 23},
+        {name: 'Vasyl', age: 25},
+        {name: 'Peta', age: 30}
+    ],
+    otherState: 'value'
+}
+
+this.setState({
+    persons: [
+        {name: 'ILYAS', age: 18},
+        {name: 'Vasyl', age: 18},
+        {name: 'Peta', age: 18}
+    ]
+});
+```
+В результате в объекте `state` будет:
+```javascript
+state = {
+    persons: [
+        {name: 'ILYAS', age: 18},
+        {name: 'Vasyl', age: 18},
+        {name: 'Peta', age: 18}
+    ],
+    otherState: 'value'
+}
+```
+
+## State в функциональных компонентах
+```javascript
+    const [personsState, setPersonsState] = useState({
+        persons: [
+            {name: 'Ilya', age: 23},
+            {name: 'Vasyl', age: 25},
+            {name: 'Peta', age: 30}
+        ]
+    });
+```
+`personsState` - дает доступ к объекту `state`
+
+`setPersonsState` - позволяет изменять содержимое объекта `state`
+
+> `setPersonsState` не будет совмещать старый и новый объект, а просто перезапишет его
+> на примере ниже потеряется свойство `otherState`
+```javascript
+    const [personsState, setPersonsState] = useState({
+        persons: [
+            {name: 'Ilya', age: 23},
+            {name: 'Vasyl', age: 25},
+            {name: 'Peta', age: 30}
+        ],
+        otherState: 'value'
+    });
+
+    const switchNameHandler = () => {
+        setPersonsState({
+            persons: [
+                {name: 'ILYAS', age: 18},
+                {name: 'Vasyl', age: 25},
+                {name: 'Peta', age: 30}
+            ]
+        });
+    }
+```
+
+В результате в объекте `state` будет:
+```javascript
+state = {
+    persons: [
+        {name: 'ILYAS', age: 18},
+        {name: 'Vasyl', age: 25},
+        {name: 'Peta', age: 30}
+    ]
+}
+```
+
+**Свойства `otherState` больше нет в объекте `state`, так как оно не было указано
+при перезаписи объекта.**
+
+Для удобства манипулирования объектами необходимо для каждого определять `useState`, например:
+```javascript
+    const [personsState, setPersonsState] = useState({
+        persons: [
+            {name: 'Ilya', age: 23},
+            {name: 'Vasyl', age: 25},
+            {name: 'Peta', age: 30}
+        ]
+    });
+
+    const [otherState, setOtherState] = useState('value or object or array');
+```
+
+## React Hooks
+
+Функции вида `useSomething` и есть **React Hooks**, например `useState`.
+Хуки позволяют добавлять функциональности к функциональным компонентам.
+
+## Stateful & Stateless components
+Компоненты делятся на два вида:
+- `stateful` компоненты с отслеживанием состояния (иначе они называются `smart` или `container`, так как 
+  содержат внутреннюю логику и функционал)
+- `stateless` компоненты без отслеживания состояния (иначе они называются `dumb` (ввиду отсутствия внутренней логики) или `presentational` (потому
+  что они только отображают данные))
+
+Хорошей практикой является создавать как можно больше компонентов без отслеживания состояния.
+Так как приложения с большим количеством `stateless` компонентов легче поддерживать, управлять,
+в них легко прослеживаются потоки данных, четко понятны места основной логики приложения, 
+распределения данных.
+
+## Passing method references & parameters between components
+
+Есть два способа использовать методы в дочерних компонентах:
+
+- метод `.bind()` **(приоритетный вариант)**
+```javascript
+    <Person
+      name={personsState.persons[1].name}
+      age={personsState.persons[1].age}
+      click={switchNameHandler.bind(this, 'ILYAS from BIND')}/>
+```
+
+- стрелочная функция **(может негативно влиять на производительность из-за слишком частого обновления данных)**
+```javascript
+  <Person
+    name={personsState.persons[2].name}
+    age={personsState.persons[2].age}
+    click={() => switchNameHandler('ILYAS from arrow function')}/>
+```
+
+Если параметров нет, то можно просто передать ссылку на метод следующим образом:
+```javascript
+    <Person
+      name={personsState.persons[1].name}
+      age={personsState.persons[1].age}
+      click={switchNameHandler}/>
+```
+
+## Two-way bonding
+
+App.js
+```javascript
+
+  const nameChangedHandler = (event) => {
+    setPersonsState({
+      persons: [
+        {name: 'Ilya', age: 18},
+        {name: event.target.value, age: 25},
+        {name: 'Peta', age: 30}
+      ]
+  });
+}
+
+  <Person
+      name={personsState.persons[1].name}
+      age={personsState.persons[1].age}
+      click={switchNameHandler.bind(this, 'ILYAS from BIND')}
+      changed={nameChangedHandler}
+  />
+```
+
+Person.js
+
+```javascript
+const person = (props) => {
+    return (
+        <div>
+            <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old.</p>
+            <p>{props.children}</p>
+            <input type='text' onChange={props.changed} value={props.name}/>
+        </div>
+    );
+}
+```
+Атрибут `changed` передает ссылку на метод 
+
+## Styling  
+
+Есть два способа стилизирования компонентов:
+
+1. Создать файл `.css` в папке компонента, описать в нем стили и подключить к компоненту
+```javascript
+import './Person.css';
+```
+2. Описать стили как объект в компоненте (или отдельным файлом с последующим подключением через
+   `import`) и использовать в атрибуте `style`
+```javascript
+    const style = {
+        backgroundColor: 'white',
+        font: 'inherit',
+        border: '1px solid blue',
+        padding: '8px',
+        cursor: 'pointer'
+    }
+    
+    <button
+        style={style}
+        onClick={() => switchNameHandler('ILYAS from arrow function')}>
+        Switch Name
+    </button>
+```
+
+## Events
+Основной список событий и примеров доступен в [документации по событиям](https://reactjs.org/docs/events.html).

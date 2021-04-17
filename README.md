@@ -151,7 +151,7 @@ person.printGender();
 # Spread & Rest Operators
 
 ## Spread
-`...` - берет **все** элменты старого массива и пишет в новый
+`...` - берет **все** элементы старого массива и пишет в новый
 ```javascript
 const newArray = [...oldArray, 1, 2];
 const newObject = {...oldArray, newProp: 5};

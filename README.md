@@ -680,8 +680,11 @@ return (
         onClick={toggleView()}>
         Switch Name
     </button>
-    {elements}
-);
+{
+    elements
+}
+)
+;
 ```
 
 ## Lists & keys
@@ -705,8 +708,129 @@ return (
 </div>
 ```
 
-Атрибут `key` должен обязательно должен присутствовать и быть уникальным, 
-например `id` или как в этом случае - `index`
+Атрибут `key` должен обязательно должен присутствовать и быть уникальным, например `id` или как в этом случае - `index`
+
+## Dynamic styles & classes
+
+Стили можно задавать объектом и далее, изменяя этот объект согласно условиям — управлять стилями.
+
+```jsx
+const style = {
+    backgroundColor: 'green',
+    color: 'white',
+    font: 'inherit',
+    fontWeight: '600',
+    border: '1px solid blue',
+    padding: '8px',
+    cursor: 'pointer'
+}
+
+if (personsState.showPersons) {
+    style.backgroundColor = 'red';
+}
+
+<button style={style}>
+    Show persons
+</button>
+```
+
+Динамически назначать классы можно следующим образом:
+
+1. В зависимости от условия
+
+```jsx
+<p className={personsState.showPersons ? 'red' : 'bold'}>And It's working</p>
+```
+
+2. С помощью массива строк, содержащих имена классов
+
+```jsx
+let classes = ['red', 'bold'].join(' ');
+
+<p className={classes}>And It's working</p>
+```
+
+### Radium `npm package`
+
+Пакет, позволяющий использовать медиа запросы, ключевые кадры для анимаций в коде `jsx`. Для использования необходимо
+установить пакет с помощью `npm`.
+
+Примеры:
+
+1. Использование для применения псевдоклассов
+
+```jsx
+const style = {
+    ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+    }
+}
+
+// При перезаписи необходимо использовать следующий синтаксис
+style[':hover'] = {
+    backgroundColor: 'salmon',
+    color: 'black'
+}
+```
+
+Также `все` компоненты, где используются псевдоклассы **должны** быть обернуты в `Radium`
+
+```jsx
+export default Radium(app);
+```
+
+2. Использования для применения медиа запросов
+
+```jsx
+const style = {
+    '@media (min-width: 500px)': {
+        width: '450px'
+    }
+}
+```
+
+При использовании медиа запросов, необходимо обернуть всё содержимое `return` в файле `App.js` в
+элемент `<StyleRoot></StyleRoot>`
+
+```jsx
+<StyleRoot>
+    <div className="App">
+    </div>
+</StyleRoot>
+```
+
+### Styled-Components `npm package`
+
+Позволяет добавлять стили для компонентов, создавая дополнительные компоненты.
+
+```jsx
+const StyledDiv = styled.div`
+  width: 60%;
+  margin: 16px auto;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 16px;
+  text-align: center;
+  @media (min-width: 500px) {
+    width: 450px
+  }
+`;
+
+const person = (props) => {
+    return (
+        <StyledDiv>
+            <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old.</p>
+            <p>{props.children}</p>
+            <input type='text' onChange={props.changed} value={props.name}/>
+        </StyledDiv>
+    );
+}
+```
+
+Внутри компонента создается еще один компонент с именем `StyledDiv` в котором вызывается метод
+`styled`.`имя элемента` и с помощью шаблона строк заполняется стилями. Далее используется как элемент (компонент)
+в `jsx` коде.
 
 ## Events
 

@@ -924,6 +924,8 @@ return (
 );
 ```
 
+# TODO описать 439. Using Boundaries
+
 ## Events
 
 Основной список событий и примеров доступен в [документации по событиям](https://reactjs.org/docs/events.html).

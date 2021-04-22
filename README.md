@@ -78,7 +78,7 @@ import * as bundle from './utility.js'
 
 # Classes
 
-Класс - шаблон для объекта.
+Класс — шаблон для объекта.
 
 ```jsx
 class Person {
@@ -386,8 +386,7 @@ class NewPost extends Component { // state can only be accessed in class-based c
 ```
 
 При изменении `state` компонент отобразит новые данные. Отличием `state` от `props` является то, что все происходит в
-рамках одного компонента.
-`state` не получает данные из вне (от родительских компонентов).
+рамках одного компонента. `state` не получает данные из вне (от родительских компонентов).
 > `this.setState` в компонентах основанных на классах, при изменении
 > совмещает данные старого объекта и нового
 
@@ -582,7 +581,7 @@ const person = (props) => {
 
 ## Styling
 
-Есть два способа стилизирования компонентов:
+Есть два способа добавления стилей для компонентов:
 
 1. Создать файл `.css` в папке компонента, описать в нем стили и подключить к компоненту
 
@@ -626,22 +625,23 @@ const toggleView = () => {
 }
 
 return (
-    <button
-        style={style}
-        onClick={toggleView()}>
-        Switch Name
-    </button>
-{
-    state.show === true ?
-        <div>
-            <p>1</p>
-            <p>2</p>
-            <p>3</p>
-        </div>
-        : null
-}
-)
-;
+    <div>
+        <button
+            style={style}
+            onClick={toggleView()}>
+            Switch Name
+        </button>
+        {
+            state.show === true ?
+                <div>
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                </div>
+                : null
+        }
+    </div>
+);
 ```
 
 2. Через оператор `if()`
@@ -675,16 +675,17 @@ if (state.show) {
 }
 
 return (
-    <button
-        style={style}
-        onClick={toggleView()}>
-        Switch Name
-    </button>
-{
-    elements
-}
-)
-;
+    <div>
+        <button
+            style={style}
+            onClick={toggleView()}>
+            Switch Name
+        </button>
+        {
+            elements
+        }
+    </div>
+);
 ```
 
 ## Lists & keys
@@ -831,6 +832,97 @@ const person = (props) => {
 Внутри компонента создается еще один компонент с именем `StyledDiv` в котором вызывается метод
 `styled`.`имя элемента` и с помощью шаблона строк заполняется стилями. Далее используется как элемент (компонент)
 в `jsx` коде.
+
+В последствии CSS код подставляется в тэг `<style>` внутри `<head>` со сгенерированным CSS классом, который указывается
+в компоненте после сборки
+
+### Styled-Components `npm package` & Dynamic styles
+
+Для динамического изменения стилей необходимо указывать условие в виде собственного (или обычного)
+атрибута в компоненте.
+
+```jsx
+<StyledButton
+    alt={personsState.showPersons}
+    onClick={showPersonsHandler}>
+    Show persons
+</StyledButton>
+```
+
+В последствии, в компоненте динамических стилей, с помощью тернарного оператора и значения условия — переназначать
+стили (без обратных слэшей, какое-то экранирование от `MD`).
+
+```jsx
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+    &:hover {
+      background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+      color: ${props => props.alt ? 'white' : 'black'};
+    }
+`;
+```
+
+### CSS Modules
+
+> **При использовании `react-scripts` версии > 2.x можно просто именовать CSS файлы следующим
+> образом: `App.module.css` и по умолчанию будет использоваться модульный CSS.** Далее файл
+> можно использовать с помощью `import classes from './App.module.css';`
+
+Еще одним подходом к реализации стилей в React является `CSS Modules`. Данный вариант позволяет использовать
+импортировать стили из `.css` файла как объект. Для этого необходимо в конфигурации (предварительно
+выполнив `npm run eject` для получения доступа к файлам конфигурации) изменить следующие параметры:
+
+В файле `config/webpack.config.prod.js` и `config/webpack.config.dev.js` рядом с
+`test: /\.css$/` добавить строки в `use:`
+
+```js
+use: [
+    {
+        loader: require.resolve('css-loader'),
+        options: {
+            importLoaders: 1,
+            modules: true, //нужно добавить
+            localIdentName: '[name]__[local]__[hash: base64:5]', //нужно добавить
+            minimize: true,
+            sourceMap: shouldUseSourceMap,
+        },
+    }
+]
+```
+
+После данных операций можно будет импортировать стили из файла как объект и использовать свойства этого объекта, пример:
+
+App.css
+
+```css
+.red {
+    color: red;
+}
+
+.bold {
+    font-weight: bold;
+}
+```
+
+App.js
+
+```jsx
+import classes from './App.css';
+
+let assignedClasses = [classes.red, classes.bold].join(' ');
+
+return (
+    <div>
+        <p className={assignedClasses}>It's working</p>
+    </div>
+);
+```
 
 ## Events
 

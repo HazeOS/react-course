@@ -6,6 +6,22 @@
 
 1. [Arrow Functions](#arrow-functions)
 1. [Exports & Imports](#exports-&-imports)
+1. [Classes](#classes)
+    1. [Class example](#class-example-ES6-/-ES7)
+1. [Spread & Rest Operators](#spread--rest-operators)
+    1. [Spread](#spread)
+    1. [Rest](#rest)
+    1. [Destructing](#destructing)
+        1. [Array Destructing](#array-destructing)
+        1. [Object Destructing](#object-destructing)
+1. [Reference and Primitive Types Refresher](#reference-and-primitive-types-refresher)
+1. [Refreshing Array Functions](#refreshing-array-functions)
+1. [Build Workflow](#build-workflow)
+1. [React Commands](#react-commands)
+1. [React Common Features](#react-common-features)
+    1. [JSX](#jsx)
+    1. [props](#props-properties)
+    1. [state](#state---)
 
 # Arrow Functions
 
@@ -135,7 +151,7 @@ person.printName();
 person.printGender();
 ```
 
-## Пример класса на новом поколении ES6 / ES7
+## Class example ES6 / ES7
 
 ```jsx
 class Human {
@@ -366,7 +382,7 @@ const person = (props) => {
 Свойства указанные в атрибутах, доступны через параметр `props.*`. Также есть свойства по умолчанию,
 например `props.children`, в котором будет содержимое компонента переданное между `<Person>` и `</Person>`
 
-## State
+## State & useState
 
 `state` - используется для изменения компонента внутри себя. Доступен только в компонентах основанных на классах (
 class-based components).
@@ -924,7 +940,63 @@ return (
 );
 ```
 
-# TODO описать 439. Using Boundaries
+## Error Boundaries
+
+Error Boundary (предохранитель) - позволяет управлять поведением приложения при ошибках. Предохранитель является
+компонентом, который оборачивает другие компоненты, в которых может произойти ошибка, например при обращении к серверу.
+Хорошей практикой является использовать предохранитель только там, где это действительно необходимо.
+
+ErrorBoundary.js
+
+```jsx
+class ErrorBoundary extends React.Component {
+    state = {hasError: false};
+
+    componentDidCatch(error, errorInfo) {
+        // You can also log the error to an error reporting service
+        logErrorToMyService(error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            // You can render any custom fallback UI
+            return <h1>Something went wrong.</h1>;
+        }
+
+        return this.props.children;
+    }
+}
+```
+
+**Важно!** Текст, указанный в методе `render()` будет отображаться только после сборки приложения. В режиме разработки
+будет выводиться stack trace.
+
+App.js
+
+```jsx
+if (personsState.showPersons) {
+    persons = (
+        <div>
+            {personsState.persons.map((person) => {
+                return (
+                    <ErrorBoundary key={person.id}>
+                        <Person
+                            name={person.name}
+                            age={person.age}
+                            changed={event => nameChangedHandler(event, person.id)}
+                            click={() => deletePersonHandler(person.id)}>
+                            My hobby: Nothing
+                        </Person>
+                    </ErrorBoundary>
+                );
+            })}
+        </div>
+    );
+    btnClass = classes.Red;
+}
+```
+
+Ознакомиться с предохранителями более подробно можно [здесь](https://ru.reactjs.org/docs/error-boundaries.html).
 
 ## Events
 

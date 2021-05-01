@@ -16,12 +16,49 @@
         1. [Object Destructing](#object-destructing)
 1. [Reference and Primitive Types Refresher](#reference-and-primitive-types-refresher)
 1. [Refreshing Array Functions](#refreshing-array-functions)
+1. [Refreshing JS Keywords](#refreshing-js-keywords)
 1. [Build Workflow](#build-workflow)
 1. [React Commands](#react-commands)
 1. [React Common Features](#react-common-features)
     1. [JSX](#jsx)
     1. [props](#props-properties)
-    1. [state](#state---)
+    1. [state & useState()](#state--usestate)
+        - [State in Functional-Based Components](#state-in-functional-based-components)
+    1. [React Hooks](#react-hooks)
+    1. [Stateful & Stateless Components](#stateful--stateless-components)
+    1. [Passing Method References & Parameters Between Components](#passing-method-references--parameters-between-components)
+    1. [Two Way Bonding](#two-way-bonding)
+    1. [Styling](#styling)
+    1. [Conditionals](#conditionals)
+    1. [Lists & Keys](#lists--keys)
+    1. [Dynamic Styles & Classes](#dynamic-styles--classes)
+        - [Radium](#radium-npm-package)
+        - [Styled-Components](#styled-components-npm-package)
+        - [Styled-Components & Dynamic Styles](#styled-components-npm-package--dynamic-styles)
+        - [CSS Modules](#css-modules)
+    1. [Error Boundaries](#error-boundaries)
+    1. [Components-Lifecycle](#components-lifecycle)
+        - [Class-Based](#class-based)
+            - [Creation](#creation)
+            - [Update](#update)
+        - [Function-Based](#function-based)
+            - [useEffect()](#useeffect)
+    1. [Optimization](#optimization)
+        - [shouldComponentUpdate()](#shouldcomponentupdate)
+        - [React.memo()](#reactmemo)
+        - [PureComponent](#purecomponent)
+    1. [React Dom Update Approach](#react-dom-update-approach)
+    1. [Render Adjacent (siblings) elements](#render-adjacent-siblings-elements)
+    1. [High Order Components (HOC)](#high-order-components-hoc)
+    1. [Setting State Correctly](#setting-state-correctly)
+    1. [PropTypes](#proptypes)
+    1. [Refs](#refs)
+        - [Refs in Class-Based Components](#refs-in-class-based-components)
+        - [Refs in Function-Based Components](#refs-in-functions-based-components)
+    1. [React Context API](#react-context-api)
+        - [Context API in Class-Based Components](#context-api-in-class-based-components)
+        - [Context API in Function-Based Components](#context-api-in-function-based-components)
+    1. [Events](#events)
 
 # Arrow Functions
 
@@ -151,7 +188,7 @@ person.printName();
 person.printGender();
 ```
 
-## Class example ES6 / ES7
+## Class Example ES6 / ES7
 
 ```jsx
 class Human {
@@ -313,6 +350,10 @@ console.log(doubleNumArray); // [2, 4, 6];
 1. [`.slice()`](https://developer.mozilla.org/en-US/docs/Web/jsx/Reference/Global_Objects/Array/slice)
 1. [`.splice()`](https://developer.mozilla.org/en-US/docs/Web/jsx/Reference/Global_Objects/Array/splice)
 
+# Refreshing JS Keywords
+
+`static` - в классе обозначает, что доступ к свойству или методу может быть осуществлен без создания экземпляра класса.
+
 # Build Workflow
 
 Лучшие практики для одно страничных и многостраничных веб приложений:
@@ -393,11 +434,11 @@ class NewPost extends Component { // state can only be accessed in class-based c
         counter: 1
     };
 
-   render() { // Needs to be implemented in class-based components! Needs to return some JSX!
-      return (
-              <div>{this.state.counter}</div>
-      );
-   }
+    render() { // Needs to be implemented in class-based components! Needs to return some JSX!
+        return (
+            <div>{this.state.counter}</div>
+        );
+    }
 }
 ```
 
@@ -408,12 +449,12 @@ class NewPost extends Component { // state can only be accessed in class-based c
 
 ```jsx
 state = {
-   persons: [
-      {name: 'Ilya', age: 23},
-      {name: 'Vasyl', age: 25},
-      {name: 'Peta', age: 30}
-   ],
-   otherState: 'value'
+    persons: [
+        {name: 'Ilya', age: 23},
+        {name: 'Vasyl', age: 25},
+        {name: 'Peta', age: 30}
+    ],
+    otherState: 'value'
 }
 
 this.setState({
@@ -438,7 +479,7 @@ state = {
 }
 ```
 
-## State в функциональных компонентах
+### State in Functional-Based Components
 
 ```jsx
     const [personsState, setPersonsState] = useState({
@@ -524,7 +565,7 @@ const [otherState, setOtherState] = useState('value or object or array');
 большим количеством `stateless` компонентов легче поддерживать, управлять, в них легко прослеживаются потоки данных,
 четко понятны места основной логики приложения, распределения данных.
 
-## Passing method references & parameters between components
+## Passing Method References & Parameters Between Components
 
 Есть два способа использовать методы в дочерних компонентах:
 
@@ -704,7 +745,7 @@ return (
 );
 ```
 
-## Lists & keys
+## Lists & Keys
 
 Таким способом выводится список данных
 
@@ -727,7 +768,7 @@ return (
 
 Атрибут `key` должен обязательно должен присутствовать и быть уникальным, например `id` или как в этом случае - `index`
 
-## Dynamic styles & classes
+## Dynamic Styles & Classes
 
 Стили можно задавать объектом и далее, изменяя этот объект согласно условиям — управлять стилями.
 
@@ -852,7 +893,7 @@ const person = (props) => {
 В последствии CSS код подставляется в тэг `<style>` внутри `<head>` со сгенерированным CSS классом, который указывается
 в компоненте после сборки
 
-### Styled-Components `npm package` & Dynamic styles
+### Styled-Components `npm package` & Dynamic Styles
 
 Для динамического изменения стилей необходимо указывать условие в виде собственного (или обычного)
 атрибута в компоненте.
@@ -992,7 +1033,7 @@ if (personsState.showPersons) {
             })}
         </div>
     );
-   btnClass = classes.Red;
+    btnClass = classes.Red;
 }
 ```
 
@@ -1033,6 +1074,8 @@ if (personsState.showPersons) {
    Основной метод для отправки `http` запросов. В этом методе не следует обновлять `state`
 
 #### Update
+
+Обновление компонента включает в себя следующие, последовательно выполняемые функции:
 
 1. `getDerivedStateFromProps(props, state)`
 
@@ -1078,7 +1121,7 @@ if (personsState.showPersons) {
 > **Относится только к компонентам основанных на функциях - `function-based components`
 > Иными словами это `React Hooks`**
 
-1. `useEffect`
+#### useEffect
 
 По сути объединяет функционал всех `lifecycle-hooks` описанных выше для компонентов основанных на
 классах `class-based components`. Внутри метода можно делать `http` запросы и прочие блокирующие операции. Можно
@@ -1088,10 +1131,10 @@ if (personsState.showPersons) {
 
 ```jsx
 useEffect(() => {
-   console.log('[Cockpit.js] useEffect');
-   setTimeout(() => {
-      alert('Saved Data to Cloud');
-   }, 1000);
+    console.log('[Cockpit.js] useEffect');
+    setTimeout(() => {
+        alert('Saved Data to Cloud');
+    }, 1000);
 }, [props.persons]);
 ```
 
@@ -1099,21 +1142,432 @@ useEffect(() => {
 
 ```jsx
 useEffect(() => {
-   console.log('[Cockpit.js] useEffect');
+    console.log('[Cockpit.js] useEffect');
 
-   const timer = setTimeout(() => {
-      alert('Saved Data to Cloud');
-   }, 1000);
+    const timer = setTimeout(() => {
+        alert('Saved Data to Cloud');
+    }, 1000);
 
-   return () => {
-      console.log('[Cockpit.js] useEffect clean up...');
-      clearTimeout(timer);
-   };
+    return () => {
+        console.log('[Cockpit.js] useEffect clean up...');
+        clearTimeout(timer);
+    };
 }, []);
 ```
 
-# TODO React.memo - средство оптимизации при обновлении функциональных компонентов
+## Optimization
+
+Если есть уверенность, что при обновлении родительского компонента обновляется и дочерний, то использовать нижеуказанные
+методы оптимизации **не нужно**, так как это увеличит нагрузку на приложение из-за того что будут запускаться
+бессмысленные проверки изменений.
+
+Оптимизировать нужно только в том случае, если есть понимание, что компонент может **обновляться просто так, не имея на
+это причин**.
+
+### shouldComponentUpdate
+
+Функция для оптимизации обновления компонентов основанных на классах. Реализуется с помощью указания метода и внутренней
+логики в теле класса. В данном примере компонент будет обновляться только в том случае, если новый состав
+свойства `persons` не равен действующему составу.
+
+```jsx
+shouldComponentUpdate(nextProps, nextState)
+{
+    console.log('[Persons.js] shouldComponentUpdate');
+    if (nextProps.persons !== this.props.persons) {
+        return true;
+    } else {
+        return false;
+    }
+}
+```
+
+### React.memo
+
+Средство оптимизации обновления компонентов основанных на функциях. Используется для отключения перерисовки компонентов,
+данные в которых не обновляются. Для использования необходимо обернуть компонент при экспорте.
+
+```jsx
+export default React.memo(component);
+```
+
+### PureComponent
+
+PureComponent — это компонент, который имеет встроенный метод `shouldComponentUpdate`. Встроенный метод будет сравнивать
+все свойства `state` и решать, обновлять компонент или нет. Если хоть одно из свойств изменилось — компонент будет
+обновлён.
+
+```jsx
+import React, {PureComponent} from "react";
+
+class Persons extends PureComponent {
+}
+```
+
+## React DOM Update Approach
+
+Обновление документа происходит следующим образом:
+
+1. При наличии `shouldComponentUpdate()` или `React.memo()` проверяется нужно ли обновлять компонент
+1. Вызывается метод `render()` (если проверка в пункте 1 была пройдена)
+1. Сравнивается старый **виртуальный** документ и новый **виртуальный** документ (с последними изменениями)
+1. Если есть различия — обновляется **реальный** документ.
+
+## Render Adjacent (siblings) Elements
+
+Для вывода нескольких элементов в теле `return()` можно использовать 2 способа:
+
+1. Указать массив как возвращаемое значение, определив свойство `key` для каждого элемента
+
+```jsx
+return [
+    <p key={"1"} onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>,
+    <p key={"2"}>{this.props.children}</p>,
+    <input key={"3"} type='text' onChange={this.props.changed} value={this.props.name}/>
+];
+```
+
+2. Создать high order component, который будет оборачивать компонент, где необходимо вернуть несколько элементов
+
+Auxiliary.js
+
+```jsx
+import React, {Component} from "react";
+
+const aux = props => props.children;
+
+export default aux;
+```
+
+Person.js
+
+```jsx
+return (
+    <Aux>
+        <p onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>
+        <p>{this.props.children}</p>
+        <input type='text' onChange={this.props.changed} value={this.props.name}/>
+    </Aux>
+);
+```
+
+3. Использовать встроенный элемент - `Fragment` (осуществляет те же самые действия, что и в пункте 2)
+
+```jsx
+import React, {Component, Fragment} from "react";
+
+return (
+    <Fragment>
+        <p onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>
+        <p>{this.props.children}</p>
+        <input type='text' onChange={this.props.changed} value={this.props.name}/>
+    </Fragment>
+);
+```
+
+## High Order Components (HOC)
+
+Главным назначением таких компонентов является дополнение дочерних компонентов: их стилизация, логика и так далее. В
+основном, компоненты высокого назначения используются для оборачивания дочерних компонентов. Например, для указания
+классов.
+
+1. Способ оборачивания через функциональный компонент
+
+WithClass.js
+
+```jsx
+import React from "react";
+
+const withClass = props => (
+    <div className={props.classes}>
+        {props.children}
+    </div>
+);
+
+export default withClass;
+```
+
+App.js
+
+```jsx
+return (
+    <WithClass classes={classes.App}>
+        <button onClick={this.showCockpitHandler}>Toggle Cockpit show</button>
+        {this.state.showCockpit ?
+            <Cockpit
+                title={this.props.appTitle}
+                showPersons={this.state.showPersons}
+                personsLength={this.state.persons.length}
+                clicked={this.showPersonsHandler}
+            />
+            : null}
+
+        {persons}
+    </WithClass>
+);
+```
+
+2. Способ оборачивания через возвращение функционального компонента и прокидыванием свойств
+
+withClass.js
+
+```jsx
+import React from "react";
+
+const withClassNew = (WrappedComponent, className) => {
+    return props => (
+        <div className={className}>
+            <WrappedComponent {...props}/>
+        </div>
+    );
+}
+
+export default withClassNew;
+```
+
+Person.js
+
+```jsx
+export default withClass(Person, classes.Person);
+```
+
+Код указанный выше, вернет новый функциональный компонент, обработанный функцией
+`withClassNew()`. С помощью указания `{...props}` мы прокидываем в новый компонент все свойства. Это `{...props}`
+превращается (в зависимости от прокинутых свойств) примерно в это `<WrappedComponent name="Ilya" age="23"/>`
+
+> **Первый способ** больше подходит для случаев, когда нужно просто указать стили.
+>
+> **Второй способ** больше подходит для случаев, когда есть какая-то дополнительная логика для реализации
+> в компоненте "оборачивателе", например сбор статистики или аналитики или указание ошибок.
+
+## Setting State Correctly
+
+Состояние (`state`) не меняется перманентно. Состояние может **меняться с задержкой**, так работает React.
+
+В связи с этим не следует использовать следующую конструкцию.
+
+```jsx
+this.setState({
+    changeCounter: this.state.changeCounter + 1
+});
+```
+
+Обращаясь к `state` в `this.setState()` нет гарантий, что в текущем `state` свойство changeCounter имеет актуальное
+значение, так как может получиться так, что в другом методе значения свойства было изменено, но изменения не успели
+примениться к `state`.
+
+Во избежание некорректного поведения, описанного выше, необходимо использовать альтернативный подход
+
+```jsx
+this.setState((prevState, props) => {
+    return {
+        persons: persons,
+        showPersons: true,
+        changeCounter: prevState.changeCounter + 1
+    }
+});
+```
+
+Таким образом, когда необходимо обновлять значения свойств, основываясь на предыдущих значениях, необходимо использовать
+вышеуказанный подход.
+
+## PropTypes
+
+Дополнительная библиотека от разработчиков React, которая позволяет указывать типы для `props`. Полезный инструмент при
+работе в команде. Используется как в компонентах основанных на классах, так и в компонентах основанных на функциях.
+
+Типы описываются в файле компонента перед экспортом.
+
+```jsx
+Person.propTypes = {
+    click: PropTypes.func,
+    changed: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number
+};
+
+export default withClass(Person, classes.Person);
+```
+
+## Refs
+
+Специальное свойство для управления любым JSX (HTML) элементом.
+
+### Refs in Class-Based Components
+
+```jsx
+componentDidMount()
+{
+    this.inputElement.focus();
+}
+
+<input
+    ref={(inputElem) => {
+        this.inputElement = inputElem
+    }}
+    type='text'
+    onChange={this.props.changed}
+    value={this.props.name}
+/>
+```
+
+Альтернативный способ создания ссылки
+
+```jsx
+constructor()
+{
+    this.inputElementRef = React.createRef();
+}
+
+componentDidMount()
+{
+    this.inputElementRef.current.focus();
+}
+
+<input
+    ref={this.inputElementRef}
+    type='text'
+    onChange={this.props.changed}
+    value={this.props.name}
+/>
+```
+
+### Refs in Functions-Based Components
+
+В теле компонента необходимо инициализировать переменную, которая будет хранить ссылку:
+
+```jsx
+const toggleButtonRef = useRef(null);
+```
+
+Далее необходимо указать в коде элемента созданную ссылку
+
+```jsx
+<button
+    ref={toggleButtonRef}
+    className={btnClass}
+    onClick={props.clicked}>
+    Show persons
+</button>
+```
+
+Затем использовать в функции, **которая исполняется после возвращения `JSX` кода из компонента.** Например `useEffect()`
+
+```jsx
+useEffect(() => {
+    toggleButtonRef.current.click();
+
+    return () => {
+        console.log('[Cockpit.js] useEffect clean up...');
+    };
+}, []);
+```
+
+## React Context API
+
+Технология позволяющая использовать состояние в компонентах, минуя прокидывание через `props`. Например, нам необходимо
+использовать данные аутентификации в некоторых компонентах, которые находятся в глубине иерархии (дочерние-дочерних), но
+в таком случае, чтобы передать информацию от одного компонента к другому придется передавать значение с помощью `props`
+через всю иерархию. `Context` Позволяет избежать этого.
+
+Простыми словами, `Context` это объект (либо другой тип: массив, строка, число), который доступен глобально или где ему
+указано быть доступным.
+
+### Context API in Class-Based Components
+
+auth-context.js
+
+```jsx
+import React from "react";
+
+const authContext = React.createContext({
+    authenticated: false,
+    login: () => {
+    }
+});
+
+export default authContext;
+```
+
+Свойства по умолчанию определяются для удобства работы в IDE (авто подстановка).
+
+Для использования необходимо обозначить `Provider` и `Consumer`.
+
+- `Provider` - компонент стоящий выше по иерархии, свойства которого нужно передать компоненту ниже по иерархии
+- `Consumer` - компонент, в который необходимо передать данные
+
+App.js
+
+```jsx
+<AuthContext.Provider
+    value={{authenticated: this.state.authenticated, login: this.loginHandler}}
+>
+    {this.state.showCockpit ?
+        <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            clicked={this.showPersonsHandler}
+        />
+        : null}
+
+    {persons}
+</AuthContext.Provider>
+```
+
+Person.js
+
+```jsx
+<AuthContext.Consumer>
+    {context => context.authenticated ? <p>Authenticated</p> : <p>NOT Authenticated</p>}
+</AuthContext.Consumer>
+```
+
+Переданный в `Provider` в атрибут `value` объект доступен через `context`.
+> В данном примере доступ к `context` будет только в рамках рендера `<AuthContext.Consumer>`
+
+Альтернативный способ использования `context`, который позволяет использовать его в методах класса.
+
+Person.js
+
+```jsx
+class Person extends Component {
+    static contextType = AuthContext;
+}
+```
+
+Свойство `contextType` позволяет React автоматически получить доступ к `context` и наполнить его значениями.
+
+**Использовать необходимо свойство с именем `context`**
+
+```jsx
+{
+    this.context.authenticated ?
+        <p>Authenticated</p> :
+        <p>NOT Authenticated</p>
+}
+```
+
+### Context API in Function-Based Components
+
+Для использования `context` в компонентах основанных на функциях, необходимо использовать хук `useContext()`
+
+Cockpit.js
+
+```jsx
+import AuthContext from "../../context/auth-context";
+
+const cockpit = (props) => {
+    const authContext = useContext(AuthContext);
+
+    return (
+        <div>
+            <button onClick={authContext.login}>Log in</button>
+        </div>
+    );
+}
+```
 
 ## Events
 
-Основной список событий и примеров доступен в [документации по событиям](https://reactjs.org/docs/events.html).
+Основной список событий и примеров доступен в [**документации по событиям**](https://reactjs.org/docs/events.html).

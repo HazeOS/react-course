@@ -7,58 +7,58 @@
 1. [Arrow Functions](#arrow-functions)
 1. [Exports & Imports](#exports-&-imports)
 1. [Classes](#classes)
-   - [Class example](#class-example-ES6-/-ES7)
+    - [Class example](#class-example-ES6-/-ES7)
 1. [Spread & Rest Operators](#spread--rest-operators)
-   - [Spread](#spread)
-   - [Rest](#rest)
-   - [Destructing](#destructing)
-      - [Array Destructing](#array-destructing)
-      - [Object Destructing](#object-destructing)
+    - [Spread](#spread)
+    - [Rest](#rest)
+    - [Destructing](#destructing)
+        - [Array Destructing](#array-destructing)
+        - [Object Destructing](#object-destructing)
 1. [Reference and Primitive Types Refresher](#reference-and-primitive-types-refresher)
 1. [Refreshing Array Functions](#refreshing-array-functions)
 1. [Refreshing JS Keywords](#refreshing-js-keywords)
 1. [Build Workflow](#build-workflow)
 1. [React Commands](#react-commands)
 1. [React Common Features](#react-common-features)
-   - [JSX](#jsx)
-   - [props](#props-properties)
-   - [state & useState()](#state--usestate)
-      - [State in Functional-Based Components](#state-in-functional-based-components)
-   - [React Hooks](#react-hooks)
-   - [Stateful & Stateless Components](#stateful--stateless-components)
-   - [Passing Method References & Parameters Between Components](#passing-method-references--parameters-between-components)
-   - [Two Way Bonding](#two-way-bonding)
-   - [Styling](#styling)
-   - [Conditionals](#conditionals)
-   - [Lists & Keys](#lists--keys)
-   - [Dynamic Styles & Classes](#dynamic-styles--classes)
-      - [Radium](#radium-npm-package)
-      - [Styled-Components](#styled-components-npm-package)
-      - [Styled-Components & Dynamic Styles](#styled-components-npm-package--dynamic-styles)
-      - [CSS Modules](#css-modules)
-   - [Error Boundaries](#error-boundaries)
-   - [Components-Lifecycle](#components-lifecycle)
-      - [Class-Based](#class-based)
-         - [Creation](#creation)
-         - [Update](#update)
-      - [Function-Based](#function-based)
-         - [useEffect()](#useeffect)
-   - [Optimization](#optimization)
-      - [shouldComponentUpdate()](#shouldcomponentupdate)
-      - [React.memo()](#reactmemo)
-      - [PureComponent](#purecomponent)
-   - [React Dom Update Approach](#react-dom-update-approach)
-   - [Render Adjacent (siblings) elements](#render-adjacent-siblings-elements)
-   - [High Order Components (HOC)](#high-order-components-hoc)
-   - [Setting State Correctly](#setting-state-correctly)
-   - [PropTypes](#proptypes)
-   - [Refs](#refs)
-      - [Refs in Class-Based Components](#refs-in-class-based-components)
-      - [Refs in Function-Based Components](#refs-in-functions-based-components)
-   - [React Context API](#react-context-api)
-      - [Context API in Class-Based Components](#context-api-in-class-based-components)
-      - [Context API in Function-Based Components](#context-api-in-function-based-components)
-   - [Events](#events)
+    - [JSX](#jsx)
+    - [props](#props-properties)
+    - [state & useState()](#state--usestate)
+        - [State in Functional-Based Components](#state-in-functional-based-components)
+    - [React Hooks](#react-hooks)
+    - [Stateful & Stateless Components](#stateful--stateless-components)
+    - [Passing Method References & Parameters Between Components](#passing-method-references--parameters-between-components)
+    - [Two Way Bonding](#two-way-bonding)
+    - [Styling](#styling)
+    - [Conditionals](#conditionals)
+    - [Lists & Keys](#lists--keys)
+    - [Dynamic Styles & Classes](#dynamic-styles--classes)
+        - [Radium](#radium-npm-package)
+        - [Styled-Components](#styled-components-npm-package)
+        - [Styled-Components & Dynamic Styles](#styled-components-npm-package--dynamic-styles)
+        - [CSS Modules](#css-modules)
+    - [Error Boundaries](#error-boundaries)
+    - [Components-Lifecycle](#components-lifecycle)
+        - [Class-Based](#class-based)
+            - [Creation](#creation)
+            - [Update](#update)
+        - [Function-Based](#function-based)
+            - [useEffect()](#useeffect)
+    - [Optimization](#optimization)
+        - [shouldComponentUpdate()](#shouldcomponentupdate)
+        - [React.memo()](#reactmemo)
+        - [PureComponent](#purecomponent)
+    - [React Dom Update Approach](#react-dom-update-approach)
+    - [Render Adjacent (siblings) elements](#render-adjacent-siblings-elements)
+    - [High Order Components (HOC)](#high-order-components-hoc)
+    - [Setting State Correctly](#setting-state-correctly)
+    - [PropTypes](#proptypes)
+    - [Refs](#refs)
+        - [Refs in Class-Based Components](#refs-in-class-based-components)
+        - [Refs in Function-Based Components](#refs-in-functions-based-components)
+    - [React Context API](#react-context-api)
+        - [Context API in Class-Based Components](#context-api-in-class-based-components)
+        - [Context API in Function-Based Components](#context-api-in-function-based-components)
+    - [Events](#events)
 
 # Arrow Functions
 
@@ -67,21 +67,21 @@
 ```jsx
 // при отсутствии параметров
 const print = () => {
-    console.log('');
+  console.log('');
 }
 ```
 
 ```jsx
 // при использовании нескольких параметров
 const print = (value, counter) => {
-    console.log(counter + value);
+  console.log(counter + value);
 }
 ```
 
 ```jsx
 // при использовании только одного параметра
 const print = counter => {
-    console.log(value);
+  console.log(value);
 }
 ```
 
@@ -98,7 +98,7 @@ persons.js
 
 ```jsx
 const person = {
-    name: 'Max'
+  name: 'Max'
 }
 export default person
 ```
@@ -135,9 +135,9 @@ import * as bundle from './utility.js'
 
 ```jsx
 class Person {
-    name = 'Max' //свойство
-    call = () => {/*some actions*/
-    } //метод
+  name = 'Max' //свойство
+  call = () => {/*some actions*/
+  } //метод
 }
 ```
 
@@ -161,26 +161,26 @@ class Person extends Master {
 
 ```jsx
 class Human {
-    constructor() {
-        this.gender = 'male';
-    }
+  constructor() {
+    this.gender = 'male';
+  }
 
-    printGender() {
-        console.log(this.gender);
-    }
+  printGender() {
+    console.log(this.gender);
+  }
 }
 
 class Person extends Human {
-    // метод запускающийся при создании экземпляра класса
-    constructor() {
-        super();// вызывает конструктор родительского класса
-        this.name = 'Max';
-        this.gender = null;
-    }
+  // метод запускающийся при создании экземпляра класса
+  constructor() {
+    super();// вызывает конструктор родительского класса
+    this.name = 'Max';
+    this.gender = null;
+  }
 
-    printName() {
-        console.log(this.name);
-    }
+  printName() {
+    console.log(this.name);
+  }
 }
 
 const person = new Person();
@@ -192,20 +192,20 @@ person.printGender();
 
 ```jsx
 class Human {
-    gender = 'male';
+  gender = 'male';
 
-    printGender = () => {
-        console.log(this.gender);
-    }
+  printGender = () => {
+    console.log(this.gender);
+  }
 }
 
 class Person extends Human {
-    name = 'Max';
-    gender = null;
+  name = 'Max';
+  gender = null;
 
-    printName = () => {
-        console.log(this.gender);
-    }
+  printName = () => {
+    console.log(this.gender);
+  }
 }
 
 const person = new Person();
@@ -230,7 +230,7 @@ const newObject = {...oldArray, newProp: 5};
 
 ```jsx
 sortArgs = (...args) => {
-    return args.filter(el => el === 1);
+  return args.filter(el => el === 1);
 }
 
 console.log(sortArgs(1, 2, 3));
@@ -287,7 +287,7 @@ console.log(secondNumber); // Prints 1
 
 ```jsx
 const person = {
-    name: 'Max'
+  name: 'Max'
 }
 const secondPerson = person;
 
@@ -298,7 +298,7 @@ console.log(secondPerson.name); // prints 'Max'
 
 ```jsx
 const person = {
-    name: 'Max'
+  name: 'Max'
 }
 const secondPerson = person;
 
@@ -315,10 +315,10 @@ console.log(secondPerson.name); // prints 'Manu'
 
 ```jsx
 const person = {
-    name: 'Max'
+  name: 'Max'
 }
 const secondPerson = {
-    ...person
+  ...person
 };
 
 person.name = 'Manu'
@@ -333,7 +333,7 @@ console.log(secondPerson.name); // prints 'Max'
 ```jsx
 const numbers = [1, 2, 3];
 const doubleNumArray = numbers.map((num) => {
-    return num * 2;
+  return num * 2;
 });
 
 console.log(numbers); // [1, 2, 3];
@@ -378,9 +378,9 @@ console.log(doubleNumArray); // [2, 4, 6];
 
 ```jsx
     return (
-    <div className="App">
-        <h1>This is React Application.</h1>
-    </div>
+  <div className="App">
+    <h1>This is React Application.</h1>
+  </div>
 );
 ```
 
@@ -388,8 +388,8 @@ console.log(doubleNumArray); // [2, 4, 6];
 
 ```jsx
     return React.createElement('div', {className: 'App'},
-    React.createElement('h1', null, 'This is React Application.'
-    ));
+  React.createElement('h1', null, 'This is React Application.'
+  ));
 ```
 
 ## Props (properties)
@@ -406,12 +406,12 @@ Person.js
 
 ```jsx
 const person = (props) => {
-    return (
-        <div>
-            <p>I'm a {props.name} and I am {props.age} years old.</p>
-            <p>{props.children}</p>
-        </div>
-    );
+  return (
+    <div>
+      <p>I'm a {props.name} and I am {props.age} years old.</p>
+      <p>{props.children}</p>
+    </div>
+  );
 }
 /**
  * Выведет:
@@ -430,15 +430,15 @@ const person = (props) => {
 
 ```jsx
 class NewPost extends Component { // state can only be accessed in class-based components!
-    state = {
-        counter: 1
-    };
+  state = {
+    counter: 1
+  };
 
-    render() { // Needs to be implemented in class-based components! Needs to return some JSX!
-        return (
-            <div>{this.state.counter}</div>
-        );
-    }
+  render() { // Needs to be implemented in class-based components! Needs to return some JSX!
+    return (
+      <div>{this.state.counter}</div>
+    );
+  }
 }
 ```
 
@@ -449,20 +449,20 @@ class NewPost extends Component { // state can only be accessed in class-based c
 
 ```jsx
 state = {
-    persons: [
-        {name: 'Ilya', age: 23},
-        {name: 'Vasyl', age: 25},
-        {name: 'Peta', age: 30}
-    ],
-    otherState: 'value'
+  persons: [
+    {name: 'Ilya', age: 23},
+    {name: 'Vasyl', age: 25},
+    {name: 'Peta', age: 30}
+  ],
+  otherState: 'value'
 }
 
 this.setState({
-    persons: [
-        {name: 'ILYAS', age: 18},
-        {name: 'Vasyl', age: 18},
-        {name: 'Peta', age: 18}
-    ]
+  persons: [
+    {name: 'ILYAS', age: 18},
+    {name: 'Vasyl', age: 18},
+    {name: 'Peta', age: 18}
+  ]
 });
 ```
 
@@ -470,12 +470,12 @@ this.setState({
 
 ```jsx
 state = {
-    persons: [
-        {name: 'ILYAS', age: 18},
-        {name: 'Vasyl', age: 18},
-        {name: 'Peta', age: 18}
-    ],
-    otherState: 'value'
+  persons: [
+    {name: 'ILYAS', age: 18},
+    {name: 'Vasyl', age: 18},
+    {name: 'Peta', age: 18}
+  ],
+  otherState: 'value'
 }
 ```
 
@@ -483,11 +483,11 @@ state = {
 
 ```jsx
     const [personsState, setPersonsState] = useState({
-    persons: [
-        {name: 'Ilya', age: 23},
-        {name: 'Vasyl', age: 25},
-        {name: 'Peta', age: 30}
-    ]
+  persons: [
+    {name: 'Ilya', age: 23},
+    {name: 'Vasyl', age: 25},
+    {name: 'Peta', age: 30}
+  ]
 });
 ```
 
@@ -500,22 +500,22 @@ state = {
 
 ```jsx
     const [personsState, setPersonsState] = useState({
-    persons: [
-        {name: 'Ilya', age: 23},
-        {name: 'Vasyl', age: 25},
-        {name: 'Peta', age: 30}
-    ],
-    otherState: 'value'
+  persons: [
+    {name: 'Ilya', age: 23},
+    {name: 'Vasyl', age: 25},
+    {name: 'Peta', age: 30}
+  ],
+  otherState: 'value'
 });
 
 const switchNameHandler = () => {
-    setPersonsState({
-        persons: [
-            {name: 'ILYAS', age: 18},
-            {name: 'Vasyl', age: 25},
-            {name: 'Peta', age: 30}
-        ]
-    });
+  setPersonsState({
+    persons: [
+      {name: 'ILYAS', age: 18},
+      {name: 'Vasyl', age: 25},
+      {name: 'Peta', age: 30}
+    ]
+  });
 }
 ```
 
@@ -523,11 +523,11 @@ const switchNameHandler = () => {
 
 ```jsx
 state = {
-    persons: [
-        {name: 'ILYAS', age: 18},
-        {name: 'Vasyl', age: 25},
-        {name: 'Peta', age: 30}
-    ]
+  persons: [
+    {name: 'ILYAS', age: 18},
+    {name: 'Vasyl', age: 25},
+    {name: 'Peta', age: 30}
+  ]
 }
 ```
 
@@ -537,11 +537,11 @@ state = {
 
 ```jsx
     const [personsState, setPersonsState] = useState({
-    persons: [
-        {name: 'Ilya', age: 23},
-        {name: 'Vasyl', age: 25},
-        {name: 'Peta', age: 30}
-    ]
+  persons: [
+    {name: 'Ilya', age: 23},
+    {name: 'Vasyl', age: 25},
+    {name: 'Peta', age: 30}
+  ]
 });
 
 const [otherState, setOtherState] = useState('value or object or array');
@@ -573,27 +573,27 @@ const [otherState, setOtherState] = useState('value or object or array');
 
 ```jsx
     <Person
-    name={personsState.persons[1].name}
-    age={personsState.persons[1].age}
-    click={switchNameHandler.bind(this, 'ILYAS from BIND')}/>
+  name={personsState.persons[1].name}
+  age={personsState.persons[1].age}
+  click={switchNameHandler.bind(this, 'ILYAS from BIND')}/>
 ```
 
 - стрелочная функция **(может негативно влиять на производительность из-за слишком частого обновления данных)**
 
 ```jsx
   <Person
-    name={personsState.persons[2].name}
-    age={personsState.persons[2].age}
-    click={() => switchNameHandler('ILYAS from arrow function')}/>
+  name={personsState.persons[2].name}
+  age={personsState.persons[2].age}
+  click={() => switchNameHandler('ILYAS from arrow function')}/>
 ```
 
 Если параметров нет, то можно просто передать ссылку на метод следующим образом:
 
 ```jsx
     <Person
-    name={personsState.persons[1].name}
-    age={personsState.persons[1].age}
-    click={switchNameHandler}/>
+  name={personsState.persons[1].name}
+  age={personsState.persons[1].age}
+  click={switchNameHandler}/>
 ```
 
 ## Two-way bonding
@@ -603,20 +603,20 @@ App.js
 ```jsx
 
 const nameChangedHandler = (event) => {
-    setPersonsState({
-        persons: [
-            {name: 'Ilya', age: 18},
-            {name: event.target.value, age: 25},
-            {name: 'Peta', age: 30}
-        ]
-    });
+  setPersonsState({
+    persons: [
+      {name: 'Ilya', age: 18},
+      {name: event.target.value, age: 25},
+      {name: 'Peta', age: 30}
+    ]
+  });
 }
 
 <Person
-    name={personsState.persons[1].name}
-    age={personsState.persons[1].age}
-    click={switchNameHandler.bind(this, 'ILYAS from BIND')}
-    changed={nameChangedHandler}
+  name={personsState.persons[1].name}
+  age={personsState.persons[1].age}
+  click={switchNameHandler.bind(this, 'ILYAS from BIND')}
+  changed={nameChangedHandler}
 />
 ```
 
@@ -624,13 +624,13 @@ Person.js
 
 ```jsx
 const person = (props) => {
-    return (
-        <div>
-            <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old.</p>
-            <p>{props.children}</p>
-            <input type='text' onChange={props.changed} value={props.name}/>
-        </div>
-    );
+  return (
+    <div>
+      <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old.</p>
+      <p>{props.children}</p>
+      <input type='text' onChange={props.changed} value={props.name}/>
+    </div>
+  );
 }
 ```
 
@@ -651,17 +651,17 @@ import './Person.css';
 
 ```jsx
     const style = {
-    backgroundColor: 'white',
-    font: 'inherit',
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer'
+  backgroundColor: 'white',
+  font: 'inherit',
+  border: '1px solid blue',
+  padding: '8px',
+  cursor: 'pointer'
 }
 
 <button
-    style={style}
-    onClick={() => switchNameHandler('ILYAS from arrow function')}>
-    Switch Name
+  style={style}
+  onClick={() => switchNameHandler('ILYAS from arrow function')}>
+  Switch Name
 </button>
 ```
 
@@ -673,31 +673,31 @@ import './Person.css';
 
 ```jsx
 const [state, setState] = useState({
-    show: true
+  show: true
 });
 
 const toggleView = () => {
-    const doesShow = state.show;
-    setState({show: !state.show});
+  const doesShow = state.show;
+  setState({show: !state.show});
 }
 
 return (
-    <div>
-        <button
-            style={style}
-            onClick={toggleView()}>
-            Switch Name
-        </button>
-        {
-            state.show === true ?
-                <div>
-                    <p>1</p>
-                    <p>2</p>
-                    <p>3</p>
-                </div>
-                : null
-        }
-    </div>
+  <div>
+    <button
+      style={style}
+      onClick={toggleView()}>
+      Switch Name
+    </button>
+    {
+      state.show === true ?
+        <div>
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+        </div>
+        : null
+    }
+  </div>
 );
 ```
 
@@ -705,43 +705,43 @@ return (
 
 ```jsx
 const [state, setState] = useState({
-    show: true
+  show: true
 });
 
 const toggleView = () => {
-    const doesShow = state.show;
-    setState({show: !state.show});
+  const doesShow = state.show;
+  setState({show: !state.show});
 }
 
 <button
-    style={style}
-    onClick={toggleView()}>
-    Switch Name
+  style={style}
+  onClick={toggleView()}>
+  Switch Name
 </button>
 
 let elements = null;
 
 if (state.show) {
-    elements = (
-        <div>
-            <p>1</p>
-            <p>2</p>
-            <p>3</p>
-        </div>
-    );
+  elements = (
+    <div>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+    </div>
+  );
 }
 
 return (
-    <div>
-        <button
-            style={style}
-            onClick={toggleView()}>
-            Switch Name
-        </button>
-        {
-            elements
-        }
-    </div>
+  <div>
+    <button
+      style={style}
+      onClick={toggleView()}>
+      Switch Name
+    </button>
+    {
+      elements
+    }
+  </div>
 );
 ```
 
@@ -751,18 +751,18 @@ return (
 
 ```jsx
 <div>
-    {personsState.persons.map((person, index) => {
-        return (
-            <Person
-                name={person.name}
-                age={person.age}
-                key={index}
-                changed={nameChangedHandler}
-                click={() => deletePersonHandler(index)}>
-                My hobby: Nothing
-            </Person>
-        );
-    })}
+  {personsState.persons.map((person, index) => {
+    return (
+      <Person
+        name={person.name}
+        age={person.age}
+        key={index}
+        changed={nameChangedHandler}
+        click={() => deletePersonHandler(index)}>
+        My hobby: Nothing
+      </Person>
+    );
+  })}
 </div>
 ```
 
@@ -774,21 +774,21 @@ return (
 
 ```jsx
 const style = {
-    backgroundColor: 'green',
-    color: 'white',
-    font: 'inherit',
-    fontWeight: '600',
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer'
+  backgroundColor: 'green',
+  color: 'white',
+  font: 'inherit',
+  fontWeight: '600',
+  border: '1px solid blue',
+  padding: '8px',
+  cursor: 'pointer'
 }
 
 if (personsState.showPersons) {
-    style.backgroundColor = 'red';
+  style.backgroundColor = 'red';
 }
 
 <button style={style}>
-    Show persons
+  Show persons
 </button>
 ```
 
@@ -819,16 +819,16 @@ let classes = ['red', 'bold'].join(' ');
 
 ```jsx
 const style = {
-    ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-    }
+  ':hover': {
+    backgroundColor: 'lightgreen',
+    color: 'black'
+  }
 }
 
 // При перезаписи необходимо использовать следующий синтаксис
 style[':hover'] = {
-    backgroundColor: 'salmon',
-    color: 'black'
+  backgroundColor: 'salmon',
+  color: 'black'
 }
 ```
 
@@ -842,9 +842,9 @@ export default Radium(app);
 
 ```jsx
 const style = {
-    '@media (min-width: 500px)': {
-        width: '450px'
-    }
+  '@media (min-width: 500px)': {
+    width: '450px'
+  }
 }
 ```
 
@@ -853,8 +853,8 @@ const style = {
 
 ```jsx
 <StyleRoot>
-    <div className="App">
-    </div>
+  <div className="App">
+  </div>
 </StyleRoot>
 ```
 
@@ -876,13 +876,13 @@ const StyledDiv = styled.div`
 `;
 
 const person = (props) => {
-    return (
-        <StyledDiv>
-            <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old.</p>
-            <p>{props.children}</p>
-            <input type='text' onChange={props.changed} value={props.name}/>
-        </StyledDiv>
-    );
+  return (
+    <StyledDiv>
+      <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old.</p>
+      <p>{props.children}</p>
+      <input type='text' onChange={props.changed} value={props.name}/>
+    </StyledDiv>
+  );
 }
 ```
 
@@ -900,9 +900,9 @@ const person = (props) => {
 
 ```jsx
 <StyledButton
-    alt={personsState.showPersons}
-    onClick={showPersonsHandler}>
-    Show persons
+  alt={personsState.showPersons}
+  onClick={showPersonsHandler}>
+  Show persons
 </StyledButton>
 ```
 
@@ -940,16 +940,16 @@ const StyledButton = styled.button`
 
 ```js
 use: [
-    {
-        loader: require.resolve('css-loader'),
-        options: {
-            importLoaders: 1,
-            modules: true, //нужно добавить
-            localIdentName: '[name]__[local]__[hash: base64:5]', //нужно добавить
-            minimize: true,
-            sourceMap: shouldUseSourceMap,
-        },
-    }
+  {
+    loader: require.resolve('css-loader'),
+    options: {
+      importLoaders: 1,
+      modules: true, //нужно добавить
+      localIdentName: '[name]__[local]__[hash: base64:5]', //нужно добавить
+      minimize: true,
+      sourceMap: shouldUseSourceMap,
+    },
+  }
 ]
 ```
 
@@ -975,9 +975,9 @@ import classes from './App.css';
 let assignedClasses = [classes.red, classes.bold].join(' ');
 
 return (
-    <div>
-        <p className={assignedClasses}>It's working</p>
-    </div>
+  <div>
+    <p className={assignedClasses}>It's working</p>
+  </div>
 );
 ```
 
@@ -991,21 +991,21 @@ ErrorBoundary.js
 
 ```jsx
 class ErrorBoundary extends React.Component {
-    state = {hasError: false};
+  state = {hasError: false};
 
-    componentDidCatch(error, errorInfo) {
-        // You can also log the error to an error reporting service
-        logErrorToMyService(error, errorInfo);
+  componentDidCatch(error, errorInfo) {
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
     }
 
-    render() {
-        if (this.state.hasError) {
-            // You can render any custom fallback UI
-            return <h1>Something went wrong.</h1>;
-        }
-
-        return this.props.children;
-    }
+    return this.props.children;
+  }
 }
 ```
 
@@ -1016,24 +1016,24 @@ App.js
 
 ```jsx
 if (personsState.showPersons) {
-    persons = (
-        <div>
-            {personsState.persons.map((person) => {
-                return (
-                    <ErrorBoundary key={person.id}>
-                        <Person
-                            name={person.name}
-                            age={person.age}
-                            changed={event => nameChangedHandler(event, person.id)}
-                            click={() => deletePersonHandler(person.id)}>
-                            My hobby: Nothing
-                        </Person>
-                    </ErrorBoundary>
-                );
-            })}
-        </div>
-    );
-    btnClass = classes.Red;
+  persons = (
+    <div>
+      {personsState.persons.map((person) => {
+        return (
+          <ErrorBoundary key={person.id}>
+            <Person
+              name={person.name}
+              age={person.age}
+              changed={event => nameChangedHandler(event, person.id)}
+              click={() => deletePersonHandler(person.id)}>
+              My hobby: Nothing
+            </Person>
+          </ErrorBoundary>
+        );
+      })}
+    </div>
+  );
+  btnClass = classes.Red;
 }
 ```
 
@@ -1126,15 +1126,28 @@ if (personsState.showPersons) {
 По сути объединяет функционал всех `lifecycle-hooks` описанных выше для компонентов основанных на
 классах `class-based components`. Внутри метода можно делать `http` запросы и прочие блокирующие операции. Можно
 использовать несколько `useEffect` для свойств `props`, которые необходимо регулярно обновлять. Вторым параметром
-принимается массив свойств, при обновлении которых нужно обновлять компонент. При указании пустого массива `[]`, код
-в `useEffect` выполниться один раз.
+принимается массив зависимостей, при обновлении которых нужно обновлять компонент. При указании пустого массива
+зависимостей `[]`, код в `useEffect` выполниться один раз при инициализации компонента.
+
+> Существует простое правило: **Все что использовано в теле `useEffect()` нужно добавить в массив зависимостей**
+
+> Основным назначением `useEffect()` является реагирование на сторонние события `side effects`, когда нужно выполнить
+> какое-то действие в ответ какому-то действию. Например: пользователь вводит данные и нужно сразу проверить это
+> поле на валидность
+
+**Не стоит добавлять в зависимости:**
+
+1. Функции обновления `state`, например `setUsersState()` ибо они никогда не меняются
+1. Встроенные API или функции (`localStorage`, `fetch()`) так как они тоже никогда не меняются и не имею отношения к
+   циклу обновления компонента React
+1. Переменные или функции, которые определены вне компонента или которые используются как вспомогательные
 
 ```jsx
 useEffect(() => {
-    console.log('[Cockpit.js] useEffect');
-    setTimeout(() => {
-        alert('Saved Data to Cloud');
-    }, 1000);
+  console.log('[Cockpit.js] useEffect');
+  setTimeout(() => {
+    alert('Saved Data to Cloud');
+  }, 1000);
 }, [props.persons]);
 ```
 
@@ -1142,18 +1155,195 @@ useEffect(() => {
 
 ```jsx
 useEffect(() => {
-    console.log('[Cockpit.js] useEffect');
+  console.log('[Cockpit.js] useEffect');
 
-    const timer = setTimeout(() => {
-        alert('Saved Data to Cloud');
-    }, 1000);
+  const timer = setTimeout(() => {
+    alert('Saved Data to Cloud');
+  }, 1000);
 
-    return () => {
-        console.log('[Cockpit.js] useEffect clean up...');
-        clearTimeout(timer);
-    };
+  return () => {
+    console.log('[Cockpit.js] useEffect clean up...');
+    clearTimeout(timer);
+  };
 }, []);
 ```
+
+На примере ниже можно отслеживать изменения с затратой меньших ресурсов. Код обновления `state` выполниться только в
+случае отсутствия пользовательского ввода в течение 500 миллисекунд. В случае непрерывного ввода пользователем будет
+выполняться тело `return()` в котором сбрасывается `timer` тем самым не позволяя запустить обновление `state`.
+
+```jsx
+const [enteredEmail, setEnteredEmail] = useState();
+const [enteredPassword, setEnteredPassword] = useState();
+const [formIsValid, setFormIsValid] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setFormIsValid(
+      enteredEmail.includes('@') && enteredPassword.trim().length > 6
+    )
+  }, 500);
+
+  return () => {
+    clearTimeout(timer);
+  };
+}, [enteredEmail, enteredPassword]);
+```
+
+#### useReducer
+
+```jsx
+const [state, dispatchFn] = useReducer(reducerFn, initialState, initFn);
+```
+
+Описание:
+
+- `state` - текущее значение
+- `dispatchFn` - функция для создания нового действия (например выполнить обновление `state`)
+- `reducerFn` - функция, которая выполниться автоматически при отправлении действия через `dispatchFn`. Получает
+  последний `state` и возвращает новый, обновленный `state`
+- `initialState` - изначально установленный `state`
+- `initFn` - функция для установки `state` программно, с предварительными манипуляциями
+
+Когда нужно использовать `useReducer()`:
+
+1. Когда есть несколько `state`, которые по идее должны быть вместе, например: поле `email` и его
+   валидность`emailIsValid`
+1. В случае когда необходимо обновлять `state` (`email`), который зависит от другого `state` (`emailIsValid`)
+
+Пример управления формой с помощью `useReducer()`:
+
+```jsx
+import React, {useEffect, useReducer} from 'react';
+
+import Card from '../UI/Card/Card';
+import classes from './Login.module.css';
+import Button from '../UI/Button/Button';
+
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case 'EMAIL_INPUT':
+      return {...state, emailValue: action.val, emailIsValid: action.val.includes('@')};
+    case 'EMAIL_INPUT_BLUR':
+      return {...state, emailValue: state.emailValue, emailIsValid: state.emailValue.includes('@')};
+    case 'PASSWORD_INPUT':
+      return {...state, passwordValue: action.val, passwordIsValid: action.val.trim().length > 6};
+    case 'PASSWORD_INPUT_BLUR':
+      return {...state, passwordValue: state.passwordValue, passwordIsValid: state.passwordValue.trim().length > 6};
+    case 'VALIDATE_FORM':
+      return state.emailIsValid && state.passwordIsValid ? {...state, formIsValid: true} : {
+        ...state,
+        formIsValid: false
+      };
+  }
+
+  return {
+    emailValue: '',
+    emailIsValid: false,
+    passwordValue: '',
+    passwordIsValid: false,
+    formIsValid: false
+  };
+}
+
+const Login = (props) => {
+  const [formState, dispatchForm] = useReducer(formReducer, {
+    emailValue: '',
+    emailIsValid: null,
+    passwordValue: '',
+    passwordIsValid: null,
+    formIsValid: null
+  });
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log('Checking form validity!');
+      dispatchForm({type: 'VALIDATE_FORM'});
+    }, 500);
+
+    return () => {
+      console.log('CLEANUP');
+      clearTimeout(identifier);
+    };
+  }, [formState.emailIsValid, formState.passwordIsValid]);
+
+  const emailChangeHandler = (event) => {
+    dispatchForm({type: 'EMAIL_INPUT', val: event.target.value});
+  };
+
+  const passwordChangeHandler = (event) => {
+    dispatchForm({type: 'PASSWORD_INPUT', val: event.target.value});
+  };
+
+  const validateEmailHandler = () => {
+    dispatchForm({type: 'EMAIL_INPUT_BLUR'});
+  };
+
+  const validatePasswordHandler = () => {
+    dispatchForm({type: 'PASSWORD_INPUT_BLUR'});
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.onLogin(formState.emailValue, formState.passwordValue);
+  };
+
+  return (
+    <Card className={classes.login}>
+      <form onSubmit={submitHandler}>
+        <div
+          className={`${classes.control} ${
+            formState.emailIsValid === false ? classes.invalid : ''
+          }`}
+        >
+          <label htmlFor="email">E-Mail</label>
+          <input
+            type="email"
+            id="email"
+            value={formState.emailValue}
+            onChange={emailChangeHandler}
+            onBlur={validateEmailHandler}
+          />
+        </div>
+        <div
+          className={`${classes.control} ${
+            formState.passwordIsValid === false ? classes.invalid : ''
+          }`}
+        >
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={formState.passwordValue}
+            onChange={passwordChangeHandler}
+            onBlur={validatePasswordHandler}
+          />
+        </div>
+        <div className={classes.actions}>
+          <Button type="submit" className={classes.btn} disabled={!formState.formIsValid}>
+            Login
+          </Button>
+        </div>
+      </form>
+    </Card>
+  );
+};
+
+export default Login;
+```
+
+Когда использовать `useState()`, а когда `useReducer()`?
+
+`useState()`:
+
+|`useState()`                                                     | `useReducer()`                                                                                        |
+|-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+|Когда нужно оперировать *простыми* состояниями                   | Когда нужно оперировать *
+сложными* состояниями                                                        |
+|Когда нужно оперировать *независимыми* между собой состояниями   | Когда нужно оперировать *
+зависимыми* между собой состояниями                                          |
+|Когда обновления состояния *не требуют* дополнительной обработки | Когда обновления состояния *
+требуют* дополнительной обработки, например, валидация полей ввода формы  |
 
 ## Optimization
 
@@ -1173,12 +1363,12 @@ useEffect(() => {
 ```jsx
 shouldComponentUpdate(nextProps, nextState)
 {
-    console.log('[Persons.js] shouldComponentUpdate');
-    if (nextProps.persons !== this.props.persons) {
-        return true;
-    } else {
-        return false;
-    }
+  console.log('[Persons.js] shouldComponentUpdate');
+  if (nextProps.persons !== this.props.persons) {
+    return true;
+  } else {
+    return false;
+  }
 }
 ```
 
@@ -1215,15 +1405,15 @@ class Persons extends PureComponent {
 
 ## Render Adjacent (siblings) Elements
 
-Для вывода нескольких элементов в теле `return()` можно использовать 2 способа:
+Для вывода нескольких `JSX` элементов в теле `return()` можно использовать 3 способа:
 
 1. Указать массив как возвращаемое значение, определив свойство `key` для каждого элемента
 
 ```jsx
 return [
-    <p key={"1"} onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>,
-    <p key={"2"}>{this.props.children}</p>,
-    <input key={"3"} type='text' onChange={this.props.changed} value={this.props.name}/>
+  <p key={"1"} onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>,
+  <p key={"2"}>{this.props.children}</p>,
+  <input key={"3"} type='text' onChange={this.props.changed} value={this.props.name}/>
 ];
 ```
 
@@ -1243,11 +1433,11 @@ Person.js
 
 ```jsx
 return (
-    <Aux>
-        <p onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>
-        <p>{this.props.children}</p>
-        <input type='text' onChange={this.props.changed} value={this.props.name}/>
-    </Aux>
+  <Aux>
+    <p onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>
+    <p>{this.props.children}</p>
+    <input type='text' onChange={this.props.changed} value={this.props.name}/>
+  </Aux>
 );
 ```
 
@@ -1257,12 +1447,80 @@ return (
 import React, {Component, Fragment} from "react";
 
 return (
-    <Fragment>
-        <p onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>
-        <p>{this.props.children}</p>
-        <input type='text' onChange={this.props.changed} value={this.props.name}/>
-    </Fragment>
+  <Fragment>
+    <p onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>
+    <p>{this.props.children}</p>
+    <input type='text' onChange={this.props.changed} value={this.props.name}/>
+  </Fragment>
 );
+```
+
+Более свежий синтаксис `<Fragment>` позволяет писать так:
+
+```jsx
+import React, {Component, Fragment} from "react";
+
+return (
+  <>
+    <p onClick={this.props.clicked}>I'm a {this.props.name} and I am {this.props.age} years old.</p>
+    <p>{this.props.children}</p>
+    <input type='text' onChange={this.props.changed} value={this.props.name}/>
+  </>
+);
+```
+
+## React Portals
+
+Используется для вывода элементов в глобальную область. Например, модальное окно, из глубины структуры HTML вывести в
+тело `<body>`. Для использования необходимо:
+
+1. Вынести модальные окна и прочие `overlay` в отдельные компоненты
+
+```jsx
+const Backdrop = props => {
+  return <div onClick={props.onConfirm} className={classes.Backdrop}/>;
+}
+
+const ModalOverlay = props => {
+  return <Card className={classes.Modal}>
+    <header className={classes.Modal__header}><h2>{props.error.header}</h2></header>
+    <p className={classes.Modal__body}>{props.error.message}</p>
+    <footer className={classes.Modal__footer}>
+      <button onClick={props.onConfirm} type="button">OK</button>
+    </footer>
+  </Card>
+}
+```
+
+2. Создать в `index.html` специальный блок для отображения этих компонентов
+
+```html
+
+<body>
+<div id="backdrop-root"></div>
+<div id="overlay-root"></div>
+</body>
+```
+
+3. Использовать метод `createPortal()` из библиотеки `React-DOM`
+
+```jsx
+const ErrorModal = (props) => {
+  return (
+    <Fragment>
+      {
+        ReactDOM.createPortal(
+          <Backdrop onConfirm={props.onConfirm}/>,
+          document.getElementById('backdrop-root'))
+      }
+      {
+        ReactDOM.createPortal(
+          <ModalOverlay onConfirm={props.onConfirm} error={props.error}/>,
+          document.getElementById('overlay-root'))
+      }
+    </Fragment>
+  );
+}
 ```
 
 ## High Order Components (HOC)
@@ -1279,9 +1537,9 @@ WithClass.js
 import React from "react";
 
 const withClass = props => (
-    <div className={props.classes}>
-        {props.children}
-    </div>
+  <div className={props.classes}>
+    {props.children}
+  </div>
 );
 
 export default withClass;
@@ -1291,19 +1549,19 @@ App.js
 
 ```jsx
 return (
-    <WithClass classes={classes.App}>
-        <button onClick={this.showCockpitHandler}>Toggle Cockpit show</button>
-        {this.state.showCockpit ?
-            <Cockpit
-                title={this.props.appTitle}
-                showPersons={this.state.showPersons}
-                personsLength={this.state.persons.length}
-                clicked={this.showPersonsHandler}
-            />
-            : null}
+  <WithClass classes={classes.App}>
+    <button onClick={this.showCockpitHandler}>Toggle Cockpit show</button>
+    {this.state.showCockpit ?
+      <Cockpit
+        title={this.props.appTitle}
+        showPersons={this.state.showPersons}
+        personsLength={this.state.persons.length}
+        clicked={this.showPersonsHandler}
+      />
+      : null}
 
-        {persons}
-    </WithClass>
+    {persons}
+  </WithClass>
 );
 ```
 
@@ -1315,11 +1573,11 @@ withClass.js
 import React from "react";
 
 const withClassNew = (WrappedComponent, className) => {
-    return props => (
-        <div className={className}>
-            <WrappedComponent {...props}/>
-        </div>
-    );
+  return props => (
+    <div className={className}>
+      <WrappedComponent {...props}/>
+    </div>
+  );
 }
 
 export default withClassNew;
@@ -1348,7 +1606,7 @@ export default withClass(Person, classes.Person);
 
 ```jsx
 this.setState({
-    changeCounter: this.state.changeCounter + 1
+  changeCounter: this.state.changeCounter + 1
 });
 ```
 
@@ -1360,11 +1618,11 @@ this.setState({
 
 ```jsx
 this.setState((prevState, props) => {
-    return {
-        persons: persons,
-        showPersons: true,
-        changeCounter: prevState.changeCounter + 1
-    }
+  return {
+    persons: persons,
+    showPersons: true,
+    changeCounter: prevState.changeCounter + 1
+  }
 });
 ```
 
@@ -1380,10 +1638,10 @@ this.setState((prevState, props) => {
 
 ```jsx
 Person.propTypes = {
-    click: PropTypes.func,
-    changed: PropTypes.func,
-    name: PropTypes.string,
-    age: PropTypes.number
+  click: PropTypes.func,
+  changed: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number
 };
 
 export default withClass(Person, classes.Person);
@@ -1391,23 +1649,24 @@ export default withClass(Person, classes.Person);
 
 ## Refs
 
-Специальное свойство для управления любым JSX (HTML) элементом.
+Специальное свойство для управления любым JSX (HTML) элементом. Используется в формах для чтения значений полей
+пользовательского ввода.
 
 ### Refs in Class-Based Components
 
 ```jsx
 componentDidMount()
 {
-    this.inputElement.focus();
+  this.inputElement.focus();
 }
 
 <input
-    ref={(inputElem) => {
-        this.inputElement = inputElem
-    }}
-    type='text'
-    onChange={this.props.changed}
-    value={this.props.name}
+  ref={(inputElem) => {
+    this.inputElement = inputElem
+  }}
+  type='text'
+  onChange={this.props.changed}
+  value={this.props.name}
 />
 ```
 
@@ -1416,19 +1675,19 @@ componentDidMount()
 ```jsx
 constructor()
 {
-    this.inputElementRef = React.createRef();
+  this.inputElementRef = React.createRef();
 }
 
 componentDidMount()
 {
-    this.inputElementRef.current.focus();
+  this.inputElementRef.current.focus();
 }
 
 <input
-    ref={this.inputElementRef}
-    type='text'
-    onChange={this.props.changed}
-    value={this.props.name}
+  ref={this.inputElementRef}
+  type='text'
+  onChange={this.props.changed}
+  value={this.props.name}
 />
 ```
 
@@ -1444,10 +1703,10 @@ const toggleButtonRef = useRef(null);
 
 ```jsx
 <button
-    ref={toggleButtonRef}
-    className={btnClass}
-    onClick={props.clicked}>
-    Show persons
+  ref={toggleButtonRef}
+  className={btnClass}
+  onClick={props.clicked}>
+  Show persons
 </button>
 ```
 
@@ -1455,11 +1714,11 @@ const toggleButtonRef = useRef(null);
 
 ```jsx
 useEffect(() => {
-    toggleButtonRef.current.click();
+  toggleButtonRef.current.click();
 
-    return () => {
-        console.log('[Cockpit.js] useEffect clean up...');
-    };
+  return () => {
+    console.log('[Cockpit.js] useEffect clean up...');
+  };
 }, []);
 ```
 
@@ -1481,9 +1740,9 @@ auth-context.js
 import React from "react";
 
 const authContext = React.createContext({
-    authenticated: false,
-    login: () => {
-    }
+  authenticated: false,
+  login: () => {
+  }
 });
 
 export default authContext;
@@ -1500,18 +1759,18 @@ App.js
 
 ```jsx
 <AuthContext.Provider
-    value={{authenticated: this.state.authenticated, login: this.loginHandler}}
+  value={{authenticated: this.state.authenticated, login: this.loginHandler}}
 >
-    {this.state.showCockpit ?
-        <Cockpit
-            title={this.props.appTitle}
-            showPersons={this.state.showPersons}
-            personsLength={this.state.persons.length}
-            clicked={this.showPersonsHandler}
-        />
-        : null}
+  {this.state.showCockpit ?
+    <Cockpit
+      title={this.props.appTitle}
+      showPersons={this.state.showPersons}
+      personsLength={this.state.persons.length}
+      clicked={this.showPersonsHandler}
+    />
+    : null}
 
-    {persons}
+  {persons}
 </AuthContext.Provider>
 ```
 
@@ -1519,7 +1778,7 @@ Person.js
 
 ```jsx
 <AuthContext.Consumer>
-    {context => context.authenticated ? <p>Authenticated</p> : <p>NOT Authenticated</p>}
+  {context => context.authenticated ? <p>Authenticated</p> : <p>NOT Authenticated</p>}
 </AuthContext.Consumer>
 ```
 
@@ -1532,7 +1791,7 @@ Person.js
 
 ```jsx
 class Person extends Component {
-    static contextType = AuthContext;
+  static contextType = AuthContext;
 }
 ```
 
@@ -1542,9 +1801,9 @@ class Person extends Component {
 
 ```jsx
 {
-    this.context.authenticated ?
-        <p>Authenticated</p> :
-        <p>NOT Authenticated</p>
+  this.context.authenticated ?
+    <p>Authenticated</p> :
+    <p>NOT Authenticated</p>
 }
 ```
 
@@ -1552,19 +1811,33 @@ class Person extends Component {
 
 Для использования `context` в компонентах основанных на функциях, необходимо использовать хук `useContext()`
 
+Auth-context.js
+
+```jsx
+import React from "react";
+
+const authContext = React.createContext({
+  authenticated: false,
+  login: () => {
+  }
+});
+
+export default authContext;
+```
+
 Cockpit.js
 
 ```jsx
 import AuthContext from "../../context/auth-context";
 
 const cockpit = (props) => {
-    const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
-    return (
-        <div>
-            <button onClick={authContext.login}>Log in</button>
-        </div>
-    );
+  return (
+    <div>
+      <button onClick={authContext.login}>Log in</button>
+    </div>
+  );
 }
 ```
 

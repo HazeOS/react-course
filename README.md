@@ -59,6 +59,8 @@
         - [Context API in Class-Based Components](#context-api-in-class-based-components)
         - [Context API in Function-Based Components](#context-api-in-function-based-components)
     - [Events](#events)
+    - [useImperativeHandle & forwardRef](#useimperativehandle--forwardref)
+1. [Rules of Hooks](#rules-of-hooks)
 
 # Arrow Functions
 
@@ -1836,6 +1838,148 @@ const cockpit = (props) => {
 }
 ```
 
+Также можно воспользоваться подходом с вынесением `Provider` и всей логики аутентификации в отдельный файл.
+
+auth-context.js
+
+```jsx
+import React, {useEffect, useState} from "react";
+
+const AuthContext = React.createContext({
+  isLoggedIn: false,
+  onLogout: () => {
+  },
+  onLogin: (email, password) => {
+  }
+});
+
+export const AuthContextProvider = (props) => {
+  useEffect(() => {
+    const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
+
+    if (storedUserLoggedInInformation === '1') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const loginHandler = () => {
+    localStorage.setItem('isLoggedIn', true);
+    setIsLoggedIn(true);
+  }
+
+  const logoutHandler = () => {
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+  }
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  return <AuthContext.Provider
+    value={{
+      isLoggedIn: isLoggedIn,
+      onLogout: logoutHandler,
+      onLogin: loginHandler
+    }}
+  >{props.children}</AuthContext.Provider>
+}
+
+export default AuthContext;
+```
+
+Далее в index.js обернуть `<App/>` в `AuthContextProvider`
+
+```jsx
+ReactDOM.render(
+  <AuthContextProvider>
+    <App/>
+  </AuthContextProvider>,
+  document.getElementById('root'));
+```
+
+Таким образом, контекст будет глобальным и его можно использовать везде следующим образом, именно `AuthContext`, а
+не `AuthContextProvider`:
+
+```jsx
+const context = useContext(AuthContext);
+
+{
+  context.isLoggedIn && (
+    <li>
+      <a href="/">Users</a>
+    </li>
+  )
+}
+```
+
+Лимиты контекста:
+
+1. Контекст не оптимизирован для очень частых изменений
+1. Не стоит использовать контекст для замены всех связей компонентов через `props`
+
+## useImperativeHandle & forwardRef
+
+> Если есть возможность — избежать использования любой ценой
+
+Используется для использования функционала дочернего компонента в родительском.
+
+Input.js
+
+```jsx
+const Input = React.forwardRef((props, ref) => {
+  const inputRef = useRef();
+
+  const activate = () => {
+    inputRef.current.focus();
+  }
+
+  useImperativeHandle(ref, () => {
+    return {
+      focus: activate
+    };
+  });
+
+  return (
+    <div
+      className={`${classes.control} ${
+        props.isValid === false ? classes.invalid : ''
+      }`}
+    >
+      <label htmlFor={props.id}>{props.label}</label>
+      <input
+        ref={inputRef}
+      />
+    </div>
+  );
+})
+
+export default Input
+```
+
+Грубо говоря экспортируем функцию `activate` с именем `focus` с указанием ссылки на элемент `Input`
+
+Login.js
+
+```jsx
+const submitHandler = (event) => {
+  event.preventDefault();
+  if (formState.formIsValid) {
+    context.onLogin(formState.emailValue, formState.passwordValue);
+  } else if (!formState.emailIsValid) {
+    emailInputRef.current.focus();
+  } else {
+    passwordInputRef.current.focus();
+  }
+};
+```
+
+Используем "экспортированную" функцию `focus()` в родительском компоненте
+
 ## Events
 
 Основной список событий и примеров доступен в [**документации по событиям**](https://reactjs.org/docs/events.html).
+
+# Rules of Hooks
+
+1. Вызывать хуки нужно **только** в теле компонента
+1. Использовать хуки **только на верхнем** уровне компонента (не вызывать внутри дочерних функций компонента)
+1. Добавлять в зависимости хука `useEffect()` **всё**, что было использовано в его теле

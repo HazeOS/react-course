@@ -62,8 +62,11 @@
     - [React Context API](#react-context-api)
         - [Context API in Class-Based Components](#context-api-in-class-based-components)
         - [Context API in Function-Based Components](#context-api-in-function-based-components)
-    - [Events](#events)
     - [useImperativeHandle & forwardRef](#useimperativehandle--forwardref)
+    - [Events](#events)
+    - [HTTP Requests](#http-requests)
+        - [fetch()](#fetch)
+        - [async / await](#async-await)
 1. [Rules of Hooks](#rules-of-hooks)
 
 # Arrow Functions
@@ -2059,6 +2062,58 @@ const submitHandler = (event) => {
 ## Events
 
 Основной список событий и примеров доступен в [**документации по событиям**](https://reactjs.org/docs/events.html).
+
+## HTTP Requests
+
+Для использования HTTP запросов, можно использовать встроенные инструменты JS и сторонние библиотеки, 
+например [axios](https://github.com/axios/axios).
+
+### fetch
+
+Пример HTTP запроса, используя функцию `fetch()`.
+
+```jsx
+const [movies, setMovies] = useState([]);
+const fetchMovies = () => {
+  fetch('https://swapi.dev/api/films')
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            const transformedMovies = data.results.map((movieData) => {
+              return {
+                id: movieData.episode_id,
+                title: movieData.title,
+                openingText: movieData.opening_crawl,
+                releaseDate: movieData.release_date,
+              }
+            });
+            setMovies(transformedMovies);
+          });
+}
+```
+
+### async await
+
+Аналог `fetch()`. Также работает с `promise`, но без кучи методов `.then()`. Используется для более 
+простого чтения кода.
+
+```jsx
+const [movies, setMovies] = useState([]);
+const fetchMovies = async () => {
+  const response = await fetch('https://swapi.dev/api/films');
+  const data = await response.json();
+  const transformedMovies = data.results.map((movieData) => {
+     return {
+       id: movieData.episode_id,
+       title: movieData.title,
+       openingText: movieData.opening_crawl,
+       releaseDate: movieData.release_date,
+     }
+  });
+  setMovies(transformedMovies);
+}
+```
 
 # Rules of Hooks
 

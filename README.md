@@ -1,6 +1,6 @@
 # Описание
 
-Справочная информация по курсу JS фреймворка [React](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
+Справочная информация по [курсу](https://www.udemy.com/course/react-the-complete-guide-incl-redux/) JS библиотеки [React](https://ru.reactjs.org/)
 
 # Оглавление
 

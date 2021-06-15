@@ -2120,3 +2120,38 @@ const fetchMovies = async () => {
 1. Вызывать хуки нужно **только** в теле компонента
 1. Использовать хуки **только на верхнем** уровне компонента (не вызывать внутри дочерних функций компонента)
 1. Добавлять в зависимости хука `useEffect()` **всё**, что было использовано в его теле
+
+# Custom Hooks
+
+Кастомные хуки — есть вынесенная в отдельные функции логика управления состоянием. В кастомных хука можно использовать
+встроенные `React` хуки, в обычных функциях нет (хуки могут использоваться только в функциях-компонентах).
+
+1. Имя функции **должно** начинаться с `use`
+1. Использование кастмного хука в разных компонентах создаст для каждого компонента свое состояние (`useState`)
+1. Хранить хуки в отдельной папке, один файл = один хук
+
+```jsx
+import {useState, useEffect} from 'react';
+
+const useCounter = (increment = true) => {
+  const [counter, setCounter] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (increment){
+         setCounter((prevCounter) => prevCounter + 1);
+      } else {
+         setCounter((prevCounter) => prevCounter - 1);
+      }
+    }, 1000);
+    
+     return () => clearInterval(interval);
+  }, [increment]);
+  
+  return counter;
+};
+
+export default useCounter();
+
+//TODO описать про useHttp()
+```
